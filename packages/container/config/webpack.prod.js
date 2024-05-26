@@ -5,7 +5,7 @@ const packageJson = require('../package.json');
 
 const domain = process.env.PRODUCTION_DOMAIN;
 
-const productConfig = {
+const prodConfig = {
   mode: 'production',
   output: {
     filename: '[name].[contenthash].js',
@@ -21,4 +21,4 @@ const productConfig = {
   ],
 };
 
-module.exports = merge(commonConfig, productConfig);
+module.exports = merge(commonConfig, prodConfig);
