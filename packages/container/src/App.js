@@ -1,7 +1,7 @@
 import React from 'react';
 import MarketingApp from './components/MarketingApp';
 
-console.log('run aws');
+console.log('run');
 
 export default () => {
   return (
