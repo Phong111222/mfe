@@ -1,8 +1,6 @@
 import React from 'react';
 import MarketingApp from './components/MarketingApp';
 
-console.log('run');
-
 export default () => {
   return (
     <div>
