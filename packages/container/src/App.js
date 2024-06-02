@@ -1,7 +1,7 @@
 import React from 'react';
 import MarketingApp from './components/MarketingApp';
 
-console.log('Hello');
+console.log('run aws deployment');
 
 export default () => {
   return (
