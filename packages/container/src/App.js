@@ -1,7 +1,10 @@
-import React from 'react';
-import MarketingApp from './components/MarketingApp';
+import React, { lazy, Suspense, useState } from 'react';
+
+const AuthApp = lazy(() => import('./components/AuthApp'));
+const MarketingApp = lazy(() => import('./components/MarketingApp'));
+
 import Header from './components/Header';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import {
   StylesProvider,
   createGenerateClassName,
@@ -12,12 +15,29 @@ const generatedClassName = createGenerateClassName({
 });
 
 export default () => {
+  const [isSignedIn, setIsSignedIn] = useState(false);
+
   return (
     <BrowserRouter>
       <StylesProvider generatedClassName={generatedClassName}>
         <div>
-          <Header />
-          <MarketingApp />
+          <Header
+            signedIn={isSignedIn}
+            onSignOut={() => setIsSignedIn(false)}
+          />
+          <Suspense fallback={<div>Loading</div>}>
+            <Switch>
+              <Route path='/auth'>
+                <AuthApp
+                  onSignIn={() => setIsSignedIn(true)}
+                  isSignedIn={isSignedIn}
+                />
+              </Route>
+              <Route path='/'>
+                <MarketingApp />
+              </Route>
+            </Switch>
+          </Suspense>
         </div>
       </StylesProvider>
     </BrowserRouter>
